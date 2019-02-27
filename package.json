@@ -15,15 +15,11 @@
     "express": "~4.16.0",
     "lock": "^1.1.0",
     "morgan": "~1.9.0",
-    "picoturtle-client-js": "file:../client/picoturtle-client-js",
     "project-name-generator": "^2.1.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",
     "pkg": "^4.3.7"
-  },
-  "pkg": {
-    "assets": "node_modules/picoturtle-client-js/**/*"
   }
 }
