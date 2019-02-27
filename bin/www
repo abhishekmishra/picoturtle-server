@@ -14,7 +14,6 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-console.log('PORT is ' + port);
 
 /**
  * Get the host from the environment
@@ -35,10 +34,13 @@ var server = http.createServer(app);
  */
 
 if (host == 'all') {
+  console.log('picoturtle server listening on all interfaces on port: ' + port);
   server.listen(port);
 } else {
-  server.listen(port, 'localhost');
+  console.log('picoturtle server listening on ' + host + ' on port: ' + port);
+  server.listen(port, host);
 }
+
 server.on('error', onError);
 server.on('listening', onListening);
 
