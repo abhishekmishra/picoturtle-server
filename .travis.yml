@@ -1,11 +1,27 @@
 language: node_js
 node_js:
-  - "10"
+- '10'
 install:
-  - npm install
+- npm install
 script:
-  - npm run pkg
-
+- npm run pkg
 notifications:
   email:
-    - abhishekmishra3@gmail.com
+  - abhishekmishra3@gmail.com
+deploy:
+  skip_cleanup: true
+  - provider: npm
+    email: abhishekmishra3@gmail.com
+    api_key:
+      secure: 6XOiYPdlW2zaDS6fcwnvC43iDLyjecGcd4w3YIrHrTTtXQK+cUFMLZJQWQtY6WJOdxWV+T9GJIKOgkDkQP9Dl6z9GN03uU/PcTumO+OdYHmj5PlfQlbPhHvfYqfRuOvY5nase7+Mb786gjKk+t3HAx3cqdwusOYDysao91gpOoPWukKN+t+nGg2I231glhU5l0SMvyDJD/UEDF9mqZS47c33SCfulgbDtlUfNVYPZpbJMzbBpUo5inDBBIg+jPOXxgHoBWGAqtyh7yPNeQO4W3sNBpIZhgfbTh1GC/CJTOS6ohJJvfnHtIKDMOy/ChzKM1oEtXvbxbp9xKzT+8L8bW64fYhkfGN9FLVjbaJM1km7zHH0cFMy0noFRmQyuIeu8A+++XuZUqRYhex3Iu+6bfFhdI/v1Sf9OApH7n1dxDzNezoj35vOCxPvd4+o0DqotMOzz0tvGQVQtx2GxTiZxY+4KwShd4XsudcJUkn7JmfzNl6+z6QtMJI6pHK09ZWS2WWsC6FPtTFENV3oK46LR3uOWoShHDRv8UgaJHwVUw309H4edRGhBbZet0YF+ch+Rff8H3DUuf9NyuN8i+lS0GRiwhCEo/3zNIXiK2KBpzyUcAYrtiVQGQu++FEhja947lYkW+u6I3tc7N81ioAKpetvEW5e1144YHLH4B8tcfI=
+    on:
+      tags: true
+      repo: abhishekmishra/picoturtle-server
+  - provider: releases
+    api_key:
+      secure: L2hSH/4+ai7vtQ0XSBOz9vvEqrJn8xZti7Pzqde5cRL0OpkJSW7eulsazryktZzxVENPFn/OaesTxmVQOjzDw2QXZ7rE4iFEhO2gX5HdnhgUHtVSt17vPYRRGd9Qm2YcH8IlYJo2fpgR7Bf7zYKASNdp8l3QMmjX2nvqRJK4R81EOknXRR2xF/PFWBim/tLSlIMLmCBTyNtGNCKmSqMovb6a9JDPEb3fHVjH6ZB/Qqy+OM5y1P74w8BL6A0fHwUZX2+O/YdLutvP9w17PnkufvEs3fIBe1+tonAt9voOZoB9KRdToc6xNMKaQwrY2b+U5PSINfNgQOMiuhFQ6TD/IbhN6TftOP9Nl4he5PrDacgTsrtWeHOeQ4zol8jlFTU4kZ0s+AuUtEVFHmK8j71ThoOUrgEwQIIiCthk4E3T6sGgSo2rSwmFpLi7jfw94vdFgRBCZm/1fhhfNv++JBBbRxUfwFXiuRwmAsZOIcnJnOJoB5ceeNWW8KKp5UlqGzwsBUsgMXTXAhgF/TjNgZaIPReST/4ELu5S6trhjX8kCBXngUhetLPCbSGCxfxX/sPpLJcYfYr2V4zNIWXtVNUr5aGM2SzlP2Y3RZt+wqU1FWOQGnwCpnBuC4e9PH0eDRzT5/K6CYKsdCdO2U9hvtVAUcK6X5r2MYj9Q9BnX0optbU=
+    file_glob: true
+    file: "./dist/picoturtle-server-*"
+    on:
+      tags: true
+      repo: abhishekmishra/picoturtle-server
