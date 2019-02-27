@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/abhishekmishra/picoturtle-server.svg?branch=master)](https://travis-ci.org/abhishekmishra/picoturtle-server)
+
 # picoturtle-server
 
 PicoTurtle Server implements a REST API which:
