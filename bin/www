@@ -17,16 +17,28 @@ app.set('port', port);
 console.log('PORT is ' + port);
 
 /**
+ * Get the host from the environment
+ */
+var host = normalizePort(process.env.HOST || 'localhost');
+
+/**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
 
 /**
+ * If host is 'all'
  * Listen on provided port, on all network interfaces.
+ * 
+ * else listen only on provided host.
  */
 
-server.listen(port, 'localhost');
+if (host == 'all') {
+  server.listen(port);
+} else {
+  server.listen(port, 'localhost');
+}
 server.on('error', onError);
 server.on('listening', onListening);
 
