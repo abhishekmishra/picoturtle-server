@@ -9,7 +9,6 @@ notifications:
   email:
   - abhishekmishra3@gmail.com
 deploy:
-  skip_cleanup: true
   - provider: npm
     email: abhishekmishra3@gmail.com
     api_key:
@@ -17,6 +16,7 @@ deploy:
     on:
       tags: true
       repo: abhishekmishra/picoturtle-server
+    skip_cleanup: true
   - provider: releases
     api_key:
       secure: L2hSH/4+ai7vtQ0XSBOz9vvEqrJn8xZti7Pzqde5cRL0OpkJSW7eulsazryktZzxVENPFn/OaesTxmVQOjzDw2QXZ7rE4iFEhO2gX5HdnhgUHtVSt17vPYRRGd9Qm2YcH8IlYJo2fpgR7Bf7zYKASNdp8l3QMmjX2nvqRJK4R81EOknXRR2xF/PFWBim/tLSlIMLmCBTyNtGNCKmSqMovb6a9JDPEb3fHVjH6ZB/Qqy+OM5y1P74w8BL6A0fHwUZX2+O/YdLutvP9w17PnkufvEs3fIBe1+tonAt9voOZoB9KRdToc6xNMKaQwrY2b+U5PSINfNgQOMiuhFQ6TD/IbhN6TftOP9Nl4he5PrDacgTsrtWeHOeQ4zol8jlFTU4kZ0s+AuUtEVFHmK8j71ThoOUrgEwQIIiCthk4E3T6sGgSo2rSwmFpLi7jfw94vdFgRBCZm/1fhhfNv++JBBbRxUfwFXiuRwmAsZOIcnJnOJoB5ceeNWW8KKp5UlqGzwsBUsgMXTXAhgF/TjNgZaIPReST/4ELu5S6trhjX8kCBXngUhetLPCbSGCxfxX/sPpLJcYfYr2V4zNIWXtVNUr5aGM2SzlP2Y3RZt+wqU1FWOQGnwCpnBuC4e9PH0eDRzT5/K6CYKsdCdO2U9hvtVAUcK6X5r2MYj9Q9BnX0optbU=
@@ -25,3 +25,4 @@ deploy:
     on:
       tags: true
       repo: abhishekmishra/picoturtle-server
+    skip_cleanup: true
