@@ -265,5 +265,41 @@ router.get('/:name/command', function (req, res, next) {
     }
 });
 
+let HARD_LIMIT = 10000;
+
+router.get('/:name/commands', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    var start_req = parseInt(req.query.start);
+    var limit_req = 10;
+    if(req.query.limit) {
+        limit_req = parseInt(req.query.limit);
+        if(limit_req > HARD_LIMIT) {
+            limit_req = HARD_LIMIT;
+        }
+    }
+    var end_req = start_req + limit_req;
+    let response = {
+        hasmore: false,
+        commands: [],
+        start: id_req,
+        limit: limit_req
+    };
+    var id_req = start_req;
+    while ((t.history.length > id_req) && (id_req < end_req)) {
+        var cmd = t.history[id_req];
+        response.commands.push(cmd);
+        response['end'] = id_req;
+        id_req += 1;
+    }
+
+    //if history has still more.
+    response['total'] = t.history.length;
+    if (t.history.length > id_req) {
+        response['hasmore'] = true;
+    } else {
+        response['hasmore'] = false;
+    }
+    res.send(response);
+});
 
 module.exports = router;
