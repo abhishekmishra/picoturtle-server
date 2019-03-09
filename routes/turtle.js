@@ -145,8 +145,8 @@ class Turtle {
         this.location = new_location;
     }
 
-    backward(distance) {
-        this.backward(-distance);
+    back(distance) {
+        this.back(-distance);
     }
 
     font(fontValue) {
@@ -256,9 +256,9 @@ router.get('/:name/forward', function (req, res, next) {
     res.send(t.state());
 });
 
-router.get('/:name/backward', function (req, res, next) {
+router.get('/:name/back', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
-    t.command('backward', [parseInt(req.query.d)]);
+    t.command('back', [parseInt(req.query.d)]);
     res.send(t.state());
 });
 
