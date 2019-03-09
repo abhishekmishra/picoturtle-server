@@ -264,19 +264,19 @@ router.get('/:name/back', function (req, res, next) {
 
 router.get('/:name/font', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
-    t.command('font', req.query.f);
+    t.command('font', [req.query.f]);
     res.send(t.state());
 });
 
 router.get('/:name/filltext', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
-    t.command('filltext', req.query.t);
+    t.command('filltext', [req.query.t]);
     res.send(t.state());
 });
 
 router.get('/:name/stroketext', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
-    t.command('stroketext', req.query.t);
+    t.command('stroketext', [req.query.t]);
     res.send(t.state());
 });
 
