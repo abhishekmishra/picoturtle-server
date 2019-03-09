@@ -72,6 +72,7 @@ class Turtle {
         this.canvas = new DummyTurtleCanvas();
         this.last = -1;
         this.start_state = this.state();
+        this.font_str = null;
     }
 
     command(cmd, args) {
@@ -100,7 +101,8 @@ class Turtle {
             pen_width: this.pen_width,
             id: this.id,
             name: this.name,
-            last: this.last
+            last: this.last,
+            font_str: this.font_str
         }
     }
 
@@ -141,6 +143,22 @@ class Turtle {
         }
 
         this.location = new_location;
+    }
+
+    backward(distance) {
+        this.backward(-distance);
+    }
+
+    font(fontValue) {
+        this.font_str = fontValue;
+    }
+
+    filltext(text) {
+        //no state change, only side-effect
+    }
+
+    stroketext(text) {
+        //no state change, only side-effect
     }
 
     stop() {
@@ -238,12 +256,35 @@ router.get('/:name/forward', function (req, res, next) {
     res.send(t.state());
 });
 
+router.get('/:name/backward', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('backward', [parseInt(req.query.d)]);
+    res.send(t.state());
+});
+
+router.get('/:name/font', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('font', req.query.f);
+    res.send(t.state());
+});
+
+router.get('/:name/filltext', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('filltext', req.query.t);
+    res.send(t.state());
+});
+
+router.get('/:name/stroketext', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('stroketext', req.query.t);
+    res.send(t.state());
+});
+
 router.get('/:name/pencolour', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
     t.command('pencolour', [new Colour(parseInt(req.query.r), parseInt(req.query.g), parseInt(req.query.b))]);
     res.send(t.state());
 });
-
 
 router.get('/:name/command', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
