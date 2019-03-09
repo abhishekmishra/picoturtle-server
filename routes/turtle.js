@@ -146,7 +146,7 @@ class Turtle {
     }
 
     back(distance) {
-        this.back(-distance);
+        this.forward(-distance);
     }
 
     font(fontValue) {
