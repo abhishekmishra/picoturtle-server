@@ -76,13 +76,13 @@ class Turtle {
 
     command(cmd, args) {
         lock(this.name, (release) => {
-            // console.log('Locked - ' + this.name);
+            console.log('Locked - ' + this.name);
             this.history.push(new TurtleCommand(this.history.length, cmd, args, () => {
                 this._command(cmd, args);
             }));
             this._command(cmd, args);
             release(() => {
-                // console.log('Released - ' + this.name);
+                console.log('Released - ' + this.name);
             })();
         });
     }
@@ -300,6 +300,16 @@ router.get('/:name/commands', function (req, res, next) {
         response['hasmore'] = false;
     }
     res.send(response);
+});
+
+router.post('/:name/commands', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    console.log(req.body);
+    for (var i = 0; i < req.body.length; i++) {
+        let command = req.body[i];
+        t.command(command.cmd, command.args);
+    }
+    res.send(t.state());
 });
 
 module.exports = router;
