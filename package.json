@@ -8,7 +8,8 @@
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
     "pkg": "pkg . -t node10-linux-x64,node10-win-x64,node10-macos-x64 --out-path ./dist",
-    "pkg-local": "pkg . -t node10 --out-path ./dist"
+    "pkg-local": "pkg . -t node10 --out-path ./dist",
+    "test": "mocha ./test --recursive --exit"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -20,6 +21,9 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
     "pkg": "^4.3.7"
   },
