@@ -54,7 +54,7 @@ class DummyTurtleCanvas {
     }
 
     line(p1, p2) {
-        console.log('Line from ' + p1 + ' to ' + p2);
+        // console.log('Line from ' + p1 + ' to ' + p2);
     }
 }
 
@@ -76,13 +76,13 @@ class Turtle {
 
     command(cmd, args) {
         lock(this.name, (release) => {
-            console.log('Locked - ' + this.name);
+            // console.log('Locked - ' + this.name);
             this.history.push(new TurtleCommand(this.history.length, cmd, args, () => {
                 this._command(cmd, args);
             }));
             this._command(cmd, args);
             release(() => {
-                console.log('Released - ' + this.name);
+                // console.log('Released - ' + this.name);
             })();
         });
     }
@@ -134,7 +134,7 @@ class Turtle {
         let x2 = distance * (Math.cos(theta)) + this.location.x;// x2 = d cos (theta) + x1 
         let new_location = new Point(x2, y2);
 
-        console.log('current point is ' + this.location + ', new point is ' + new_location);
+        // console.log('current point is ' + this.location + ', new point is ' + new_location);
 
         if (this.pen) {
             this.canvas.line(this.location, new_location);
