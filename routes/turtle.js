@@ -237,6 +237,11 @@ router.get('/:name/start_state', function (req, res, next) {
     res.send(t.start_state);
 });
 
+router.get('/:name/state', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    res.send(t.state());
+});
+
 router.get('/:name/stop', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
     t.command('stop', null);
