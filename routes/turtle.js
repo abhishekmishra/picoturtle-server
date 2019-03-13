@@ -126,6 +126,10 @@ class Turtle {
         this.angle -= angle;
     }
 
+    heading(angle) {
+        this.angle = angle;
+    }
+
     pencolour(colour) {
         this.colour = colour;
     }
@@ -134,7 +138,24 @@ class Turtle {
         let theta = this.angle * Math.PI / 180;
         let y2 = distance * (Math.sin(theta)) + this.location.y;// y2 = d sin (theta) + y1
         let x2 = distance * (Math.cos(theta)) + this.location.x;// x2 = d cos (theta) + x1 
-        let new_location = new Point(x2, y2);
+        this.goto(x2, y2);
+        // let new_location = new Point(x2, y2);
+
+        // // console.log('current point is ' + this.location + ', new point is ' + new_location);
+
+        // if (this.pen) {
+        //     this.canvas.line(this.location, new_location);
+        // }
+
+        // this.location = new_location;
+    }
+
+    back(distance) {
+        this.forward(-distance);
+    }
+
+    goto(x, y) {
+        let new_location = new Point(x, y);
 
         // console.log('current point is ' + this.location + ', new point is ' + new_location);
 
@@ -145,8 +166,16 @@ class Turtle {
         this.location = new_location;
     }
 
-    back(distance) {
-        this.forward(-distance);
+    setx(x) {
+        this.goto(x, this.location.y);
+    }
+
+    sety(y) {
+        this.goto(this.location.x, y);
+    }
+
+    home() {
+        this.goto(this.start_state.location.x, this.start_state.location.y);
     }
 
     font(fontValue) {
@@ -250,6 +279,12 @@ router.get('/:name/right', function (req, res, next) {
     res.send(t.state());
 });
 
+router.get('/:name/heading', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('heading', [parseFloat(req.query.a)]);
+    res.send(t.state());
+});
+
 router.get('/:name/forward', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
     t.command('forward', [parseInt(req.query.d)]);
@@ -259,6 +294,30 @@ router.get('/:name/forward', function (req, res, next) {
 router.get('/:name/back', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
     t.command('back', [parseInt(req.query.d)]);
+    res.send(t.state());
+});
+
+router.get('/:name/goto', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('goto', [parseInt(req.query.x), parseInt(req.query.y)]);
+    res.send(t.state());
+});
+
+router.get('/:name/setx', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('setx', [parseInt(req.query.x)]);
+    res.send(t.state());
+});
+
+router.get('/:name/sety', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('sety', [parseInt(req.query.y)]);
+    res.send(t.state());
+});
+
+router.get('/:name/home', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('home', null);
     res.send(t.state());
 });
 
