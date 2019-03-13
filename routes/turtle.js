@@ -412,7 +412,7 @@ router.post('/:name/commands', function (req, res, next) {
     console.log(req.body);
     for (var i = 0; i < req.body.length; i++) {
         let command = req.body[i];
-        if(command != 'state') {
+        if(command.cmd != 'state') {
             t.command(command.cmd, command.args);
         }
     }
