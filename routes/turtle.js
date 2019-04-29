@@ -209,6 +209,11 @@ class Turtle {
         this._canvas_size['width'] = width;
         this._canvas_size['height'] = height;
     }
+
+    // file commands
+    export_img(filename) {
+
+    }
 }
 
 function create_turtle(x = 100, y = 100) {
@@ -433,6 +438,12 @@ router.post('/:name/commands', function (req, res, next) {
 router.get('/:name/canvas_size', function (req, res, next) {
     var t = get_turtle_by_name(req.params['name']);
     t.command('canvas_size', [parseInt(req.query.width), parseInt(req.query.height)]);
+    res.send(t.state());
+});
+
+router.get('/:name/export_img', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('export_img', [req.query.filename]);
     res.send(t.state());
 });
 
