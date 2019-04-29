@@ -71,8 +71,12 @@ class Turtle {
         this.history = [];
         this.canvas = new DummyTurtleCanvas();
         this.last = -1;
-        this.start_state = this.state();
         this.font_str = null;
+        this._canvas_size = {
+            'width': 500,
+            'height': 500
+        }
+        this.start_state = this.state();
     }
 
     command(cmd, args) {
@@ -102,7 +106,8 @@ class Turtle {
             id: this.id,
             name: this.name,
             last: this.last,
-            font_str: this.font_str
+            font_str: this.font_str,
+            canvas_size: this._canvas_size
         }
     }
 
@@ -197,6 +202,12 @@ class Turtle {
     clear() {
         //clears the canvas
         //no state change, only side-effect
+    }
+
+    // canvas commands
+    canvas_size(width, height) {
+        this._canvas_size['width'] = width;
+        this._canvas_size['height'] = height;
     }
 }
 
@@ -418,5 +429,12 @@ router.post('/:name/commands', function (req, res, next) {
     }
     res.send(t.state());
 });
+
+router.get('/:name/canvas_size', function (req, res, next) {
+    var t = get_turtle_by_name(req.params['name']);
+    t.command('canvas_size', [parseInt(req.query.width), parseInt(req.query.height)]);
+    res.send(t.state());
+});
+
 
 module.exports = router;
