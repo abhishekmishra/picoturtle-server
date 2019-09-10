@@ -1,6 +1,6 @@
 {
   "name": "@picoturtle/picoturtle-server",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "bin": "./bin/www",
   "main": "index.js",
   "license": "MIT",
